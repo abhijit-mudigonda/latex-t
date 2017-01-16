@@ -2,7 +2,6 @@
 
 clear 
 
-#Stop on any error
 set -e
 #Stop on an error inside a pipeline
 set -o pipefail
@@ -22,6 +21,7 @@ file="TrainData2_9_sub_9.inkml"
 
 echo "Processing $file"
 #Make a 50x50 pixel image file
+echo "Making a file"
 python imagemaker.py --filename $file
 #Remove all newlines (make it one line)
 tr -d '\n' < $file > temp0.txt
@@ -39,9 +39,7 @@ sed 's/,//g' temp7.txt > finalcoordinates.txt
 
 rm temp*
 
-touch temp.txt
-read -r firstline < finalcoordinates.txt > temp.txt
-
+cat finalcoordinates.txt | python strokedrawer.py --filename TrainData2_9_sub.inkml
 #cat finalcoordinates.txt | while read line
 #do
 	#make a tempfile
