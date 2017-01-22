@@ -11,7 +11,11 @@ import sys
 #file to the image file
 
 if __name__ == "__main__":
-    
+    parser = ArgumentParser()
+    parser.add_argument("--destination", action = "store", help = "Where to save the file", required = True)
+    parser.add_argument("--name", action = "store", help = "Under what name to save the file", required = True)
+    o = parser.parse_args()
+
     #open the image file
     pic = Image.new('1',(5000,5000),color='white')
 
@@ -24,4 +28,4 @@ if __name__ == "__main__":
         draw.line(lines,width=3)
         
     
-    pic.save("out.png")
+    pic.save(o.destination+"/"+o.name+".png","PNG")
