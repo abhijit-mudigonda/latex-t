@@ -1,2 +1,3 @@
 ICFHR_package/
-
+*.pyc
+outputimagesoutput/

@@ -9,20 +9,17 @@ set -o pipefail
 set -u
 
 #DEFAULTS
-directory='./ICFHR_package/CROHME2012_data/trainData'
+directory='./ICFHR_package/CROHME2011_data/CROHME_training'
 
 #NONDEFAULTS
 
 #inkml files consist of multiple traces, which are sets of coordinates for that particular stroke. We want to parse just the trace parts, to get a list of coordinates, and then draw all the strokes on a blank image to create a training image. 
 
-for file in $(ls $directory | grep TrainData)
+for file in $(ls $directory | grep TrainData | shuf)
 do
 	echo "Processing $file"
-	read -p "Step 1"
 	#Make a 50x50 pixel image file
 	echo "Making a file"
-	read -p "Step 2"
-	#python imagemaker.py --filename $file
 	#Remove all newlines (make it one line)
 	tr -d '\n' < $directory/$file > temp0.txt
 	#add a new line at the trace close tags
